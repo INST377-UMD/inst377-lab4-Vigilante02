@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: blue;
+            transition: background-color 0.5s;
+        }
+        .section {
+            border: 2px solid black;
+            margin: 20px;
+            padding: 20px;
+            display: inline-block;
+            width: 300px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-heading">Interactive Form</h1>
+    
+    <div class="section">
+        <h2>Alert Me</h2>
+        <form onsubmit="return showAlert()">
+            <input type="text" id="name" placeholder="Enter your name" required>
+            <button type="submit">Alert Me</button>
+        </form>
+    </div>
+    
+    <div class="section">
+        <h2>Change Color</h2>
+        <button onclick="toggleColor()">Change Color</button>
+    </div>
+    
+    <div class="section">
+        <h2>Text Tester</h2>
+        <form onsubmit="return validateText()">
+            <input type="text" id="text-input" placeholder="Enter text">
+            <button type="submit">Validate Text</button>
+        </form>
+    </div>
+    
+    <div class="section">
+        <h2>Add Text</h2>
+        <button onclick="addText()">Add Text</button>
+    </div>
+    
+    <script>
+        function showAlert() {
+            let name = document.getElementById("name").value;
+            alert("Hi " + name + "!");
+            return false; 
+        }
+
+        let isBlue = true;
+        function toggleColor() {
+            if (isBlue) {
+                document.body.style.backgroundColor = "green";
+            } else {
+                document.body.style.backgroundColor = "blue";
+            }
+            isBlue = !isBlue;
+        }
+
+        function validateText() {
+            let text = document.getElementById("text-input").value;
+            let validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+            if (validation.test(text)) {
+                alert("Special characters are not allowed!");
+            } else {
+                alert("Text is valid!");
+            }
+            return false; 
+        }
+
+        function addText() {
+            let heading = document.getElementById("main-heading");
+            heading.innerHTML += " Add Text";
+        }
+    </script>
+</body>
+</html>
